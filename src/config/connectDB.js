@@ -1,11 +1,19 @@
 // Option 2: Passing parameters separately (sqlite)
 import {Sequelize} from "sequelize";
-const sequelize = new Sequelize("booking_care", "root", "", {
-	host: "127.0.0.1",
-	dialect: "mysql",
-	port: "8111",
-	logging: false,
-});
+import dotenv from "dotenv";
+dotenv.config();
+const sequelize = new Sequelize(
+	process.env.DB_DATABASE_NAME,
+	process.env.DB_USERNAME,
+	process.env.DB_PASSWORD,
+	{
+		host: process.env.DB_HOST,
+		dialect: process.env.DB_DIALECT,
+		port: process.env.DB_PORT,
+		logging: false,
+	}
+);
+
 let connectDB = async () => {
 	try {
 		await sequelize.authenticate();
