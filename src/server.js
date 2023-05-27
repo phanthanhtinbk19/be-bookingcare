@@ -6,9 +6,12 @@ import dotenv from "dotenv";
 import connectDB from "./config/connectDB.js";
 import cookieParser from "cookie-parser";
 import bodyParser from "body-parser";
+import compression from "compression";
+
 dotenv.config();
 
 app.use(cors());
+app.use(compression());
 app.use(cookieParser());
 app.use(bodyParser.json({limit: "50mb"}));
 app.use(bodyParser.urlencoded({limit: "50mb", extended: true}));
